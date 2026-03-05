@@ -9,7 +9,7 @@ This repository contains the code and materials used for the study:
 ## Usage
 
 ```bash
-git clone https://github.com/username/repo-name.git
+git clone https://github.com/busenurk/suicide-lca-comparison.git
 ```
 
 
