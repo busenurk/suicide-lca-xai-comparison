@@ -8,7 +8,9 @@ This repository contains the code and materials used for the study:
 
 ## Usage
 
-
+```bash
+git clone https://github.com/username/repo-name.git
+```
 
 
 ## License
