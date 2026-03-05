@@ -8,10 +8,6 @@ This repository contains the code and materials used for the study:
 
 ## Usage
 
-´´´
-git clone https://github.com/username/suicide-lca-xai-comparison.git
-´´´
-
 
 
 
