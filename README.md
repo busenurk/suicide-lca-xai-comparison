@@ -6,6 +6,11 @@ This repository contains the code and materials used for the study:
 
 <br>
 
+## Data
+This study uses the same [publicly available dataset](https://github.com/dinisurunisal/Suicide-Risk-Prediction-Project/blob/master/DataScience/AlgorithmComparison/Test-Data-10.csv) as in the XAI paper [(Tang et al., 2024)](https://www.nature.com/articles/s41598-024-53426-0)., making the analyses fully reproducible with open-access code and data.
+
+<br>
+
 ## Usage
 
 ```bash
