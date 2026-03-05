@@ -17,3 +17,9 @@ git clone https://github.com/busenurk/suicide-lca-comparison.git
 ## License
 
 This repository is released under the MIT License. See the LICENSE file for details.
+
+<br>
+
+## Citation
+
+If you use this work in your research, a citation would be much appreciated — the scholarly version of a thank-you note. 🌷
