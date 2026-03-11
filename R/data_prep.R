@@ -1,0 +1,80 @@
+library(tidyverse)
+library(recipes)
+library(dplyr)
+
+raw <- read.csv("C:/Users/kizilasb/OneDrive - Universitetet i Oslo/Skrivebord/busenurk/clustBR_V1/Test-Data-10.csv")
+
+names(raw) <- c('year', 'sui', 'age', 'gender', 'religion', 'race', 'occupation', 'marital_stat', 'education', 'reason', 
+                'lifetime_psyk_hos', 'past_sui_attempt', 'sui_thoughts', 'self_injury', 'psyk_dis', 'past_illness', 
+                'alcohol_drug_cons', 'anger', 'sleep_prob', 'social_iso', 'sad_weary', 'humiliated')
+
+raw <- raw %>% mutate(age_cat = cut(
+  age,
+  breaks = c(10, 20, 40, 60, 80, 100),
+  labels = c("10-19","20-39","40-59","60-79","80+"),
+  right = FALSE) %>% as.factor())
+
+
+df <- raw %>% mutate(age_cat = case_when(age_cat == '10-19' ~ 1,
+                                                   age_cat == '20-39' ~ 2,
+                                                   age_cat == '40-59' ~ 3,
+                                                   age_cat == '60-79' ~ 4,
+                                                   age_cat == '80+' ~ 5),
+                               gender = ifelse(gender == 'F',0, 1),
+                               religion = case_when(religion == 'Buddhist' ~ 0,
+                                                    religion == 'Christian' ~ 1,
+                                                    religion == 'Hindu' ~ 2,
+                                                    religion == 'Islam' ~ 3,
+                                                    religion == 'Other' ~ 4),
+                               race = case_when(race == 'Burger' ~ 0,
+                                                race == 'Muslim' ~ 1,
+                                                race == 'Sinhalese ' ~ 3,
+                                                race == 'Tamil' ~ 4,
+                                                race == 'Other' ~ 2),
+                               occupation = case_when(occupation == 'Administrative Executive Managerial & related workers' ~ 0,
+                                                      occupation == 'Agricultural Animal Husbandry Fisherman & related Forestry workers' ~ 1,
+                                                      occupation == 'Armed Services' ~ 2,
+                                                      occupation == 'Clerical & related workers (Stenographers/ Typists etc)' ~ 3,
+                                                      occupation == 'Pensioners' ~ 4,
+                                                      occupation == 'Police' ~ 5,
+                                                      occupation == 'Production process workers Craftsman & related workers transport equipment operators & labourers' ~ 6,
+                                                      occupation == 'Professional Technical & related workers (Doctors/Engineers/Accountants/ Teachers/Authors/ Photographers)' ~ 7,
+                                                      occupation == 'Sales worker' ~ 8,
+                                                      occupation == 'Security Personnel' ~ 9, 
+                                                      occupation == 'Service workers (Cooks/Tailors/Barbers/ etc)' ~ 10,
+                                                      occupation == 'Student' ~ 11,
+                                                      occupation == 'Unemployed persons' ~ 12,
+                                                      occupation == 'Workers not classfied by occupation ' ~ 13),
+                               marital_stat = case_when(marital_stat == 'Unmarried' ~ 2,
+                                                        marital_stat == 'Married' ~ 1,
+                                                        marital_stat == 'Divourced' ~ 0,
+                                                        marital_stat == 'Widow' ~ 3),
+                               education = case_when(education == 'School not attended' ~ 5,
+                                                     education == 'From Grade 1 to 7' ~ 0,
+                                                     education == 'Passed Grade 8' ~ 4,
+                                                     education == 'Passed G.C.E (O/L)' ~ 3,
+                                                     education == 'Passed G.C.E (A/L)' ~ 2,
+                                                     education == 'University Degree or above' ~ 6,
+                                                     education == 'Other' ~ 1),
+                               psyk_dis = case_when(psyk_dis == 'None' ~ 6,
+                                                    psyk_dis == 'Depression' ~ 2,
+                                                    psyk_dis == 'Bipolar Disorder' ~ 1,
+                                                    psyk_dis == 'PTSD' ~ 4,
+                                                    psyk_dis == 'Schizophrenia' ~ 5,
+                                                    psyk_dis == 'BPD' ~ 0,
+                                                    psyk_dis == 'Other' ~ 3),
+                               past_illness = case_when(past_illness == 'Unknown' ~ 9,
+                                                        past_illness == 'Diabetes' ~ 4,
+                                                        past_illness == 'Chronic pain' ~ 3,
+                                                        past_illness == 'Heart Diseases' ~ 6,
+                                                        past_illness == 'Kidney Disease' ~ 7,
+                                                        past_illness == 'Asthma' ~ 0,
+                                                        past_illness == 'Cancer' ~ 2,
+                                                        past_illness == 'COPD' ~ 1,
+                                                        past_illness == 'HIV/AIDS' ~ 5,
+                                                        past_illness == 'Other' ~ 8),
+                               alcohol_drug_cons = case_when(alcohol_drug_cons == 'None' ~ 2,
+                                                             alcohol_drug_cons == 'Frequent' ~ 0,
+                                                             alcohol_drug_cons == 'Moderate' ~ 1)) %>% 
+                        mutate(across(.cols = -age, .fns = as.factor)) 
+
