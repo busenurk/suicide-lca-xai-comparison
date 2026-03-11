@@ -2,8 +2,6 @@ library(tidyverse)
 library(recipes)
 library(dplyr)
 
-raw <- read.csv("C:/Users/kizilasb/OneDrive - Universitetet i Oslo/Skrivebord/busenurk/clustBR_V1/Test-Data-10.csv")
-
 names(raw) <- c('year', 'sui', 'age', 'gender', 'religion', 'race', 'occupation', 'marital_stat', 'education', 'reason', 
                 'lifetime_psyk_hos', 'past_sui_attempt', 'sui_thoughts', 'self_injury', 'psyk_dis', 'past_illness', 
                 'alcohol_drug_cons', 'anger', 'sleep_prob', 'social_iso', 'sad_weary', 'humiliated')
@@ -77,4 +75,5 @@ df <- raw %>% mutate(age_cat = case_when(age_cat == '10-19' ~ 1,
                                                              alcohol_drug_cons == 'Frequent' ~ 0,
                                                              alcohol_drug_cons == 'Moderate' ~ 1)) %>% 
                         mutate(across(.cols = -age, .fns = as.factor)) 
+
 
