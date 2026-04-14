@@ -27,4 +27,4 @@ This repository is released under the MIT License. See the LICENSE file for deta
 
 ## Citation
 
-If you use this work in your research, a citation would be much appreciated — the scholarly version of a thank-you note. 🌷
+If you use [this work](https://www.medrxiv.org/content/10.64898/2026.03.25.26349264v1) in your research, a citation would be much appreciated — the scholarly version of a thank-you note. 🌷
